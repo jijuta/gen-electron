@@ -35,7 +35,7 @@ const routes = [
     component: () => import('layouts/MyLayout.vue'),
     children: [
       { name: "home", beforeEnter : guardMyroute, path: '', component: () => import('pages/Index'), meta: {title: 'egov'} },
-      // { name: "cmp", beforeEnter : guardMyroute, path: '/gen/cmp', component: () => import('pages/CmpPage'), meta: {title: 'boot'} }, // Removed CmpPage
+      { name: "cmp", beforeEnter : guardMyroute, path: '/gen/cmp', component: () => import('pages/cmpView'), meta: {title: 'boot'} },
       { name: "node", beforeEnter : guardMyroute, path: '/gen/node', component: () => import('pages/NodePage'), meta: {title: 'node js'} },
       { name: "php", beforeEnter : guardMyroute, path: '/gen/php', component: () => import('pages/PhpPage'), meta: {title: 'php '} }
     ]

@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
+const { Client } = require('pg');
 // const cors = require('cors'); // CORS 모듈이 없어서 수동으로 처리
 const app = express();
 const PORT = 8888;
@@ -53,6 +54,16 @@ const dbConnections = {
 // MySQL 연결 함수
 async function getMySQLConnection() {
   return await mysql.createConnection(dbConnections.mysql);
+}
+
+// PostgreSQL 연결 함수
+async function getPostgreSQLConnection(database = 'testdb') {
+  const client = new Client({
+    ...dbConnections.postgresql,
+    database: database
+  });
+  await client.connect();
+  return client;
 }
 
 // 로그인 엔드포인트
@@ -276,6 +287,176 @@ app.get('/code/mysqltlistall/:schema', async (req, res) => {
   } catch (error) {
     console.error('전체 테이블 목록 조회 오류:', error);
     res.status(500).json({ error: 'Database query failed' });
+  }
+});
+
+// ================================
+// PostgreSQL API 엔드포인트들
+// ================================
+
+// PGSQL 테이블 목록 조회 (/code/pgsqltlist/{database})
+app.get('/code/pgsqltlist/:database', async (req, res) => {
+  try {
+    const database = req.params.database;
+    const client = await getPostgreSQLConnection(database);
+    
+    const query = `
+      SELECT 'pgsql' as dbtype, 
+             current_database() as table_schema, 
+             tablename as table_name, 
+             COALESCE(description, tablename) as table_comment
+      FROM pg_tables 
+      WHERE schemaname = 'public'
+    `;
+    
+    const result = await client.query(query);
+    await client.end();
+    
+    res.json(result.rows);
+  } catch (error) {
+    console.error('PGSQL 테이블 목록 조회 오류:', error);
+    res.status(500).json({ error: 'PostgreSQL query failed' });
+  }
+});
+
+// PGSQL 테이블 정보 조회 (/code/pgsqltinfo/{type}/{database}/{tablename})
+app.get('/code/pgsqltinfo/:type/:database/:tablename', async (req, res) => {
+  try {
+    const { database, tablename } = req.params;
+    const client = await getPostgreSQLConnection(database);
+    
+    const query = `
+      SELECT 'pgsql' as dbtype_name, 
+             current_database() as schemaname,
+             COALESCE(t.description, c.table_name) as table_comment,
+             c.table_name,
+             c.column_name as label,
+             COALESCE(d.description, c.column_name) as column_comment,
+             c.column_name,
+             c.data_type,
+             CASE 
+               WHEN c.is_nullable = 'YES' THEN 'Y'
+               ELSE 'N'
+             END as is_nullable,
+             CASE 
+               WHEN tc.constraint_type = 'PRIMARY KEY' THEN 'PRI'
+               WHEN tc.constraint_type = 'UNIQUE' THEN 'UNI'
+               ELSE ''
+             END as column_key,
+             c.column_default,
+             COALESCE(c.character_maximum_length, c.numeric_precision, 0) as character_maximum_length
+      FROM information_schema.columns c
+      LEFT JOIN information_schema.table_constraints tc 
+        ON c.table_name = tc.table_name 
+        AND c.table_schema = tc.table_schema
+      LEFT JOIN information_schema.key_column_usage kcu
+        ON tc.constraint_name = kcu.constraint_name
+        AND tc.table_schema = kcu.table_schema
+        AND c.column_name = kcu.column_name
+      LEFT JOIN pg_class t ON t.relname = c.table_name
+      LEFT JOIN pg_description td ON t.oid = td.objoid AND td.objsubid = 0
+      LEFT JOIN pg_attribute a ON a.attrelid = t.oid AND a.attname = c.column_name
+      LEFT JOIN pg_description d ON a.attrelid = d.objoid AND a.attnum = d.objsubid
+      WHERE c.table_name = $1 AND c.table_schema = 'public'
+      ORDER BY c.ordinal_position
+    `;
+    
+    const result = await client.query(query, [tablename]);
+    await client.end();
+    
+    res.json(result.rows);
+  } catch (error) {
+    console.error('PGSQL 테이블 정보 조회 오류:', error);
+    res.status(500).json({ error: 'PostgreSQL query failed' });
+  }
+});
+
+// PGSQL 데이터 조회 (/code/pgsqllist/{type}/{database}/{table})
+app.get('/code/pgsqllist/:type/:database/:table', async (req, res) => {
+  try {
+    const { database, table } = req.params;
+    const client = await getPostgreSQLConnection(database);
+    
+    const query = `SELECT * FROM "${table}" LIMIT 1000`;
+    const result = await client.query(query);
+    await client.end();
+    
+    res.json(result.rows);
+  } catch (error) {
+    console.error('PGSQL 데이터 조회 오류:', error);
+    res.status(500).json({ error: 'PostgreSQL query failed' });
+  }
+});
+
+// PGSQL 전체 테이블 목록과 컬럼 정보 (/code/pgsqltlistall/{database})
+app.get('/code/pgsqltlistall/:database', async (req, res) => {
+  try {
+    const database = req.params.database;
+    const client = await getPostgreSQLConnection(database);
+    
+    // 테이블 목록 조회
+    const tableQuery = `
+      SELECT 'pgsql' as dbtype, 
+             current_database() as table_schema, 
+             tablename as table_name, 
+             tablename as label,
+             COALESCE(description, tablename) as table_comment
+      FROM pg_tables 
+      WHERE schemaname = 'public'
+    `;
+    
+    const tableResult = await client.query(tableQuery);
+    const tables = tableResult.rows;
+    
+    // 각 테이블의 컬럼 정보 조회
+    const result = [];
+    for (const table of tables) {
+      const columnQuery = `
+        SELECT 'pgsql' as dbtype_name, 
+               current_database() as schemaname,
+               COALESCE(t.description, c.table_name) as table_comment,
+               c.table_name,
+               c.column_name as label,
+               COALESCE(d.description, c.column_name) as column_comment,
+               c.column_name,
+               c.data_type,
+               CASE 
+                 WHEN c.is_nullable = 'YES' THEN 'Y'
+                 ELSE 'N'
+               END as is_nullable,
+               CASE 
+                 WHEN tc.constraint_type = 'PRIMARY KEY' THEN 'PRI'
+                 WHEN tc.constraint_type = 'UNIQUE' THEN 'UNI'
+                 ELSE ''
+               END as column_key,
+               c.column_default,
+               COALESCE(c.character_maximum_length, c.numeric_precision, 0) as character_maximum_length
+        FROM information_schema.columns c
+        LEFT JOIN information_schema.table_constraints tc 
+          ON c.table_name = tc.table_name 
+          AND c.table_schema = tc.table_schema
+        LEFT JOIN information_schema.key_column_usage kcu
+          ON tc.constraint_name = kcu.constraint_name
+          AND tc.table_schema = kcu.table_schema
+          AND c.column_name = kcu.column_name
+        LEFT JOIN pg_class t ON t.relname = c.table_name
+        LEFT JOIN pg_description td ON t.oid = td.objoid AND td.objsubid = 0
+        LEFT JOIN pg_attribute a ON a.attrelid = t.oid AND a.attname = c.column_name
+        LEFT JOIN pg_description d ON a.attrelid = d.objoid AND a.attnum = d.objsubid
+        WHERE c.table_name = $1 AND c.table_schema = 'public'
+        ORDER BY c.ordinal_position
+      `;
+      
+      const columnResult = await client.query(columnQuery, [table.table_name]);
+      table.children = columnResult.rows;
+      result.push(table);
+    }
+    
+    await client.end();
+    res.json(result);
+  } catch (error) {
+    console.error('PGSQL 전체 테이블 목록 조회 오류:', error);
+    res.status(500).json({ error: 'PostgreSQL query failed' });
   }
 });
 
