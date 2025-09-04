@@ -1,0 +1,30 @@
+{
+  "name": "naraport5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "g.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd ./src/main/webapp/naraport && npm run serve",
+    "build": "cd ./src/main/webapp/naraport &&  npm run build && http-server ./src/main/webapp/naraport/dist -p 9999 "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "camelcase": "^5.0.0",
+    "chalk": "^2.4.2",
+    "colors": "^1.3.3",
+    "commander": "^2.19.0",
+    "element-ui": "^2.6.1",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
+    "oracledb": "^3.1.2",
+    "shelljs": "^0.8.3",
+    "store2": "^2.7.1",
+    "vue-property-decorator": "^7.3.0",
+    "yargs": "^13.2.1"
+  }
+}

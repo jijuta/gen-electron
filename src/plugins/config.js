@@ -1,0 +1,6 @@
+localStorage.setItem('team', 'saesolsoft')
+localStorage.setItem('version', '0.0.1')
+localStorage.setItem('projectdir', '')
+localStorage.setItem('packagedir', 'egovframework.com')
+localStorage.setItem('packagenm', 'egovframework')
+localStorage.setItem('dir_front', '/src/main/webapp/appfront')

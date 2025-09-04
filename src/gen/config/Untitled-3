@@ -1,0 +1,187 @@
+일반현황
+입지여건
+어항현황
+,PORT_ADRES	                "어항 주소_동·리단위"
+,LATITUDE_ADRES	            "위도"
+,LONGITUDE_ADRES	            "경도"
+,NEAR_ROAD_NM	            "인근 어항명"
+,NEAR_ROAD_DIS	            "인근 어항과의 거리"
+,HARBOR_IMG	                "항 전경 사진"
+,
+,관광여건
+,광광자원
+,MAJOR_TOUR_CNT	            "국립·도립 등 주요 관광지 수"
+,NEAR_BEACH_CNT	            "인근 해수욕장 수"
+,HISTORIC_SITE_CNT	        "유적·사적지 수"
+,FISH_VLAGE_CNT	            "어촌체험마을 수"
+,지역축제
+,FEVAL_CNT	                "지역축제_축제 수"
+,FEVAL_NM	                "지역축제_축제 명"
+,FEVAL_DT	                "지역축제_축제별 개최기간"
+,
+,생활여건
+,생활지원 시설
+,EDU_FACILITY_CNT	        "교육시설 수"
+,MEDICAL_FACILITY_CNT	    "의료시설 수"
+,CULTURE_FACILITY_CNT	    "문화·복지시설 수"
+,PUBLIC_FACILITY_CNT	        "공공시설 수"
+,
+--재난현황
+--태풍피해
+,TYPHOON_NM	                "태풍명"
+,DAMAGE_SPOT_NM	            "피해 시설명"
+,DAMAGE_PRICE_SUM	        "피해 금액"
+--안전사고"
+,PERSON_ACCIDENT_CNT	        "인명사고 횟수"
+,DEATH_CNT	                "인명사고 인원 수_사망"
+,INJURY_CNT	                "인명사고 인원 수_부상"
+,
+,개발현황
+,기본시설
+,개발계획
+,DEV_PROJECT_YEAR	        "계획수립 연도"
+,DEV_MOORAGE	                "계획현황 시설별 물량"
+,DEV_WHARF	                "계획현황 사업비"
+,DEV_COUNTER_FACILITY	    "개발계획 도면"
+,DEV_SEAWALL	                "부지이용계획 도면"
+,DEV_COSTS_SUM	            "어촌관광구역 도면"
+,개발 실적"
+,투자실적 시설별 물량"
+,INV_MOORAGE	                "계류시설"
+,INV_WHARF	                "물양장"
+,INV_COUNTER_FACILITY	    "외곽시설"
+,INV_SEAWALL	                "방파제"
+,INV_COSTS_SUM	            "투자실적 사업비"
+,LAND_AREA	                "육역 면적"
+,SEA_AREA	                "수역 면적"
+,
+,기능편익시설"
+,UA_BUSINESS_NM	            "비지정권자 어항개발사업_사업명"
+,UA_BUSINESS_MAN	            "비지정권자 어항개발사업_사업자"
+,	                        "비지정권자 어항개발사업_용도"
+,UA_USE_PUBLIC_CNT	        "공공"
+,UA_USE_WELFARE_CNT	        "복지
+,UA_USE_PROFIT_CNT	        "영리
+,UA_USE_PRODUCT_CNT	        "생산
+,UA_USE_TOUR_CNT	            "관광
+,UA_USE_ETC_CNT	            "기타
+,UA_AREA	                    "비지정권자 어항개발사업_면적
+,UA_COSTS_SUM	            "비지정권자 어항개발사업_사업비
+,FUNC_FACILITY_NM	        "기능시설 수_시설명
+,PORT_CONV_FACILITY_NM	    "어항편익시설 수_시설명
+,
+,어촌관광구역면적
+,FISH_TOUR_ALL_AREA	        "전체 면적"
+,FISH_TOUR_LAND_AREA	        "육역 면적"
+,FISH_TOUR_SEA_AREA	        "수역 면적"
+,FISH_SPOT_JIBUN	            "어항구역내 육역_지번 현황"
+,FISH_SPOT_PRICE_SUM	        "⑧ 어항구역내 육역_지번별 공시지가"
+,FISH_SPOT_AREA	            "⑨ 어항구역내 육역_지번별 면적"
+,
+,이용현황
+,이용자
+,어업인구
+,FISHERY_REAR_PERSON_CNT	    "배후 어업인구"
+,FISH_VLAGE_NM	            "이용 어촌계 명"
+,	                        "이용 어촌계원 수"
+,FISH_VLAGE_SHIP_USE_CNT	    "어항 내 어선이용"
+,FISH_VLAGE_PORT_USE_CNT	    "어항 이용"
+,FISHERY_AVERAGE_AGE	        "어촌계원 평균연령"
+,관광객"
+,PASR_SHIP_GENERAL_CNT	    "여객선 이용객 수_일반"
+,PASR_SHIP_DOSEOMIN_CNT	    "여객선 이용객 수_도서민"
+,PORT_VI_BOUND_CNT	        "어항 관내 방문객 수"
+,PORT_VI_OUTSIDE_CNT	        "어항 관외 방문객 수"
+,PORT_VI_ACCOM_CNT	        "어항 방문객 수_숙박"
+,TOUR_FISH_VLAGE_VI_CNT	    "인근 어촌체험마을 관광객 수"
+,TOUR_LC_FEVAL_VI_CNT	    "지역축제 방문객 수"
+,
+,이용선박
+,현지어선
+,ACTUAL_BOAT_CNT	            "현지어선_척수"
+,ACTUAL_BOAT_TONNAGE	        "현지어선_총톤수"
+,ACTUAL_BOAT_YEAR_FREQ	    "현지어선_연간 입항빈도"
+,ACTUAL_BOAT_DAY_FREQ	    "현지어선_일 최대 입항빈도"
+,ACTUAL_FISHBOAT_CNT	        "어장관리선_척수"
+,ACTUAL_FISHBOAT_TONNAGE	    "어장관리선_총톤수"
+,외래어선
+,FOREIGN_BOAT_YEAR_CNT	    "외래어선_연간 이용 척수"
+,FOREIGN_BOAT_YEAR_TONNAGE	"외래어선_연간 이용 총톤수"
+,FOREIGN_BOAT_YEAR_FREQ	    "외래어선_연간 입항빈도"
+,FOREIGN_BOAT_DAY_FREQ	    "외래어선_일 최대 입항빈도"
+,여객선
+,PASR_SHIP_CNT	            "여객선_운항 척수"
+,PASR_SHIP_ROAD	            "여객선_운항 항로 수"
+,PASR_SHIP_DAY_CNT	        "여객선_일최대 운항 횟수"
+,유도선
+,EXCURSION_BOAT_CNT	        "유선_척수(유람선 포함)"
+,EXCURSION_BOAT_TONNAGE	    "유선_총톤수"
+,FERRY_BOAT_CNT	            "도선_척수"
+,FERRY_BOAT_TONNAGE	        "도선_총톤수"
+,낙시어
+,FISHING_BOAT_CNT	        "낚시어선_척수"
+,FISHING_BOAT_TONNAGE	    "낚시어선_총톤수"
+,FISHING_BOAT_YEAR_FREQ	    "낚시어선_연간 입항빈도"
+,FISHING_BOAT_DAY_FREQ	    "낚시어선_일 최대 입항빈도"
+,레이저기구
+,LEISURE_USE_CNT	            "동력수상레저기구_이용 척수"
+,대피어선
+,EVA_BOAT_CNT	            "태풍시 대피어선_척수"
+,EVA_BOAT_TONNAGE	        "태풍시 대피어선_톤수"
+,
+,부지이용
+,점사용
+,SHIP_OCC_CNT	            "점사용 허가_건수"
+,SHIP_OCC_APPLY	            "점사용 허가_신청자"
+,SHIP_OCC_PURPOSE	        "점사용 허가_목적"
+,SHIP_OCC_AREA	            "점사용 허가_면적"
+,SHIP_OCC_DT	                "점사용 허가_기간"
+,SHIP_OCC_SUM	            "점사용 허가_연간 점사용료"
+,SHIP_OCC_LOC	            "점사용 허가_위치(지번)"
+,	                        "점사용 허가_시설별 이용실태"
+,SHIP_OCC_FACILICTY_NM	    "시설명"
+,SHIP_OCC_FACILITY_USE	    "사용(점용면적)"
+,SHIP_OCC_FACILITY_CNT	    "건수""
+,SHIP_OCC_FACILITY_USE_AT    "이용여부(건)"
+,부지사용
+,LAND_DEV_AT	                "용도 구역별 조성 여부"
+,LAND_USE_AT	                "용도 구역별 이용 여부"
+,                            "①
+,지역경제
+,지역소득
+,수산물위판
+,MR_MK_NM	                "해당 위판장 명
+,MR_SCALE_AREA	            "위판장 규모_면적
+,MR_YEAR_AMOUNT	            "연간 위판량
+,MR_YEAR_PRICE_SUM	        "연간 위판금액
+,MR_MAJOR_FISH_TYPE	        "주요 취급 어종
+,관광관련 매출(억원)
+,	                        "매출액_음식업
+,LC_FOOD_IN_SUM	            "항내
+,LC_FOOD_OUT_SUM	            "항외
+,	                        "매출액_레저관광업"
+,LC_LEISURE_IN_SUM	        "항내"
+,LC_LEISURE_OUT_SUM	        "항외"
+,WH_RET_SUM	                "매출액_도소매업"
+,LC_FISHTOWN_SUM	            "매출액_인근 어촌체험마을"
+,관광관련 매출(백만원)
+,LC_FOOD_MILLION_SUM	        "매출액_음식업"
+,LC_LEISURE_MILLION_SUM	    "매출액_레저관광업"
+,LC_WH_RET_MILLION_SUM	    "매출액_도소매업"
+,LC_FISHTOWN_MILLION_SUM	    "매출액_인근 어촌체험마을"
+,어업관련 매출
+,LC_FUEL_SUM	                "매출액_급유"
+,LC_ICE_SUM	                "매출액_급빙"
+,LC_FREEZE_COOL_SUM	        "매출액_냉동냉장"
+,
+,고용노동
+,종사자수
+,SAILOR_CNT	                "종사자_선원 수"
+,	                        "종사자_수협 종사자 수"
+,SALE_WORK_CNT	            "위판"
+,FUEL_WORK_CNT	            "급유"
+,FREEZE_WORK_CNT	            "급빙"
+,FREEZE_COOL_WORK_CNT	    "냉동/냉장"
+,PRO_SALE_WORK_CNT	        "가공시설/판매"
+,WHOS_WORK_CNT               "종사자_중·도매인 수"
+,AUCTIONEER_WORK_CNT	        "종사자_경매사 수"

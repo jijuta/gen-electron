@@ -1,0 +1,88 @@
+{
+    "appDir": "app",
+    "viewdir": "src/views",
+    "componentDir": "src/component",
+    "router": [
+      {
+        "path": "/home",
+        "name": "home",
+        "title": "home"
+      },
+      {
+        "path": "/about",
+        "name": "about",
+        "title": "about"
+      },
+      {
+        "path": "/usagestatus",
+        "name": "usagestatus",
+        "title": "어촌어항현황정보"
+      },
+      {
+        "path": "/spacegeography",
+        "name": "spacegeography",
+        "title": "공간지리정보"
+      },
+      {
+        "path": "/statisticsinfo",
+        "name": "statisticsinfo",
+        "title": "통계정보"
+      },
+      {
+        "path": "/referenceroom/notice",
+        "name": "notice",
+        "title": "공지사항"
+      },
+      {
+        "path": "/referenceroom/document",
+        "name": "document",
+        "title": "문서정보"
+      },
+      {
+        "path": "/referenceroom/ebook",
+        "name": "ebook",
+        "title": "이북자료"
+      },
+      {
+        "path": "/referenceroom/legalinfo",
+        "name": "legalinfo",
+        "title": "법령정보"
+      },
+      {
+        "path": "/referenceroom/fishingvillage",
+        "name": "fishingvillage",
+        "title": "어촌현황"
+      },
+      {
+        "path": "/referenceroom/faq",
+        "name": "faq",
+        "title": "FAQ"
+      },
+      {
+        "path": "/members/login",
+        "name": "login",
+        "title": "로그인"
+      },
+      {
+        "path": "/members/join",
+        "name": "join",
+        "title": "회원가입"
+      },
+      {
+        "path": "/members/idsearch",
+        "name": "idsearch",
+        "title": "아이디찾기"
+      },
+      {
+        "path": "/members/passwordsearch",
+        "name": "passwordsearch",
+        "title": "비밀번호찾기"
+      },
+      {
+        "path": "/members/mypage",
+        "name": "mypage",
+        "title": "마이페이지"
+      }
+    ]
+  }
+  
